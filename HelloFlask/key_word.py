@@ -1,8 +1,10 @@
 import re
-from commands import Parse
+from commands import Parse, ListSites, ChooseWebSite
 
 COMMANDS = {
-    'запарси': Parse,
+    'сохрани': Parse,
+    'список сайтов': ListSites,
+    'выбери': ChooseWebSite,
 }
 
 class KeyWord(object):
@@ -10,15 +12,15 @@ class KeyWord(object):
     def __init__(self, message):
 
         self.message = message.lower()
-        self._perform_command()
+        return self._perform_command()
 
     def _perform_command(self):
 
-        COMMANDS[self.message.split(" ")[0].lower()](self.message)
+        return str(COMMANDS[self.message.split(" ")[0].lower()](self.message))
 
 
 
-message = "Запарси три страницы категории строительные технологии с сайта порно онлайн"        
+message = "Сохрани три страницы категории строительные технологии с сайта чёртик"        
 command = KeyWord(message)
 
 
