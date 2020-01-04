@@ -2,6 +2,7 @@ import telebot
 import os
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
+from key_word import KeyWord
 
 dir_path = os.getcwd()
 
@@ -20,7 +21,9 @@ def start(message):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
-    bot.reply_to(message, message.text)
+
+    text = KeyWord(message)
+    bot.reply_to(message, text)
 
 @app.route("/{}".format(TOKEN), methods=['POST'])
 def getMessage():

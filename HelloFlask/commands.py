@@ -5,7 +5,7 @@ this module is for describing possible commands of bot for controling web-sites!
 
 import re
 import request
-from models import CurrentWebSite
+# from models import CurrentWebSite
 
 NUMS = {
     'одну': 1,
@@ -22,9 +22,14 @@ NUMS = {
 
 class ListSites(object):
 
-    list_of_sites = ['homepornweb.com', 'xvideos.com', 'pretty_cool.com', 'cool_pussy.com']
+    list_of_sites = [
+    'homepornweb.com',
+    'xvideos.com',
+    'pretty_cool.com',
+    'cool_pussy.com'
+    ]
 
-    def __init__(self, message):
+    def __init__(self, parameters):
 
         pass
 
@@ -44,16 +49,13 @@ class ChooseWebSite(ListSites):
 
     def _choose_web_site(self):
 
-        
-
-
+        pass
 
 class Parse(object):
 
-    def __init__(self, message):
+    def __init__(self, parameters):
 
-        self.message = message
-
+        self.message = parameters['message']
         try:
             self._pick_up_information()
         except Exception as err:
