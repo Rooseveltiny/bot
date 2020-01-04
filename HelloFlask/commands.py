@@ -19,19 +19,18 @@ NUMS = {
     'девять': 9,
 }
 
-
-class ListSites(object):
-
-    list_of_sites = [
-    'homepornweb.com',
+LIST_OF_SITES = [
     'xvideos.com',
     'pretty_cool.com',
     'cool_pussy.com'
+    'homepornweb.com',
     ]
+
+class ListSites(object):
 
     def __init__(self, parameters):
 
-        pass
+        self.list_of_sites = LIST_OF_SITES 
 
     def __str__(self):
 

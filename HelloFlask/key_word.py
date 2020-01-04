@@ -9,10 +9,9 @@ COMMANDS = {
 
 class KeyWord(object):
 
-    def __init__(self, **kwargs):
+    def __init__(self, parameter_of_message):
 
-        #### here we should change on kwargs!!!!
-        self.parameters = kwargs
+        self.parameters = parameter_of_message
         self.result = self._perform_command()
 
     def _perform_command(self):
@@ -28,7 +27,8 @@ if __name__ == "__main__":
     }
 
     command = KeyWord(data)
-    
+    kek = 1
+
 
 
 
