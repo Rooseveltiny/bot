@@ -22,15 +22,9 @@ def start(message):
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
 
-    data = ''
-    for key in message.keys():
-        data += message[key]+'\n'
 
-    with open('logs.log', 'w') as log_file:
-        log_file.write(data)
-
-    text = KeyWord(message)
-    bot.reply_to(message, text)
+    # text = KeyWord(message)
+    bot.reply_to(message, message.text + '\n' +data)
 
 @app.route("/{}".format(TOKEN), methods=['POST'])
 def getMessage():
