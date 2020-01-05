@@ -24,6 +24,11 @@ LIST_OF_SITES = [
     'pretty_cool.com',
     'cool_pussy.com',
     'homepornweb.com',
+    'chertik.tv',
+    'megapo.com',
+    'keklol.kek',
+    'maamacri.ru',
+    'yoyoyoyoyo.net',
     ]
 
 class ListSites(object):

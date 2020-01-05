@@ -9,7 +9,7 @@ TEST = [
 
 class Chat(object):
 
-    id = 777
+    id = 443028866
 
 class MessageObject(object):
 
@@ -24,8 +24,8 @@ def perform_tests():
     tests_result = ''
     for message in TEST:    
         message = MessageObject(message)
-        command = KeyWord(message)
-        tests_result += command.result+'\n'
+        # command = KeyWord(message)
+        tests_result += KeyWord(message).result+'\n'
 
     return tests_result
 

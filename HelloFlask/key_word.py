@@ -10,14 +10,14 @@ COMMANDS = {
 
 class KeyWord(object):
 
-    def __init__(self, parameter_of_message):
+    def __init__(self, message):
 
-        self.parameters = parameter_of_message
+        self.message = message
         self.result = self._perform_command()
 
     def _perform_command(self):
 
-        return str(COMMANDS[self.parameters.text.split(" ")[0].lower()](self.parameters))
+        return str(COMMANDS[self.message.text.split(" ")[0].lower()](self.message))
 
 
 
