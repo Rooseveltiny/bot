@@ -1,9 +1,9 @@
 from key_word import KeyWord
 
 TEST = [
-    # 'Выбери сайт 1',
+    'Выбери сайт 1',
     # 'Текущий сайт?',
-    'Список сайтов',
+    # 'Список сайтов',
     # 'Сохрани 3 страницы из категории строительные технологии с сайта Фэйсбук',
 ] 
 
@@ -24,7 +24,7 @@ def perform_tests():
     for message in TEST:    
         message = MessageObject(message)
         command = KeyWord(message)
-        kek = 1
+        return command.result
 
     kek = 1
 

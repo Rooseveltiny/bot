@@ -3,6 +3,8 @@ from key_word import KeyWord
 import telebot
 import os
 from models import db
+from tests import perform_tests
+
 
 dir_path = os.getcwd()
 
@@ -38,9 +40,14 @@ def webhook():
 @app.route("/tests")
 def webhook_tests():
     
-    perform_tests()
-    return "!", 200
+    try:
+        text = perform_tests()
+    except Exception as err:
+        text = err
 
+    return text, 200
 
+if __name__ == '__main__':
+    app.run(use_debugger=False, use_reloader=False, passthrough_errors=True)
 
 
