@@ -2,7 +2,7 @@ import telebot
 import os
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
-from key_word import KeyWord
+# from key_word import KeyWord
 
 dir_path = os.getcwd()
 
@@ -37,3 +37,33 @@ def webhook():
     bot.set_webhook(url="https://keklol.ru/{}".format(TOKEN))
     return "!", 200
 
+
+
+
+### here are models
+class CurrentWebSite(db.Model):
+
+    user = db.Column(db.Integer, primary_key = True)
+    current_web_site = db.Column(db.String(50))
+
+    def __repl__(self):
+
+        return 'user is {}, and the current web site is {}'.format(self.user, self.current_web_site)
+
+    def str(self):
+
+        return 'user is {}, and the current web site is {}'.format(self.user, self.current_web_site)
+
+    def save(self):
+
+        current_web_site = db.session.query(CurrentWebSite).filter_by(user=self.user).first()
+        if current_web_site:
+            current_web_site.current_web_site = 'lolkek.com'
+            db.session.commit()
+        else:
+            db.session.add(self)
+            db.session.commit()
+
+if __name__ == "__main__":
+    
+    db.create_all()

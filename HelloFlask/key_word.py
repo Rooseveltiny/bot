@@ -16,19 +16,7 @@ class KeyWord(object):
 
     def _perform_command(self):
 
-        return str(COMMANDS[self.parameters['message'].split(" ")[0].lower()](self.parameters))
-
-
-if __name__ == "__main__":
-    
-    data = {
-        'message': 'список сайтов',
-        'user_id': 1234321
-    }
-
-    command = KeyWord(data)
-    kek = 1
-
+        return str(COMMANDS[self.parameters.text.split(" ")[0].lower()](self.parameters))
 
 
 

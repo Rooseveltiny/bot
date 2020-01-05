@@ -5,7 +5,7 @@ this module is for describing possible commands of bot for controling web-sites!
 
 import re
 import request
-# from models import CurrentWebSite
+from application import CurrentWebSite
 
 NUMS = {
     'одну': 1,
@@ -44,17 +44,24 @@ class ChooseWebSite(ListSites):
     def __init__(self, message):
 
         self.message = message
+        self.site_number = int(re.search(r'\d+', message.text).group(0))
         self._choose_web_site()
 
     def _choose_web_site(self):
 
-        pass
+        current_web_site = CurrentWebSite(user = self.message.chat.id, current_web_site = LIST_OF_SITES[self.site_number + 1])
+        current_web_site.save()
+
+    def __str__(self):
+
+        return 'Сайт выбран!'
+
 
 class Parse(object):
 
     def __init__(self, parameters):
 
-        self.message = parameters['message']
+        self.message = parameters.text
         try:
             self._pick_up_information()
         except Exception as err:
@@ -80,7 +87,7 @@ class Parse(object):
 
     def __str__(self):
 
-        pass
+        return "всё ок!"
         
 
 if __name__ == "__main__":
