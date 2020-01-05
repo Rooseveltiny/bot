@@ -70,7 +70,7 @@ class ShowCurrentWebSite(CurrentWebSite):
 
     def __str__(self):
 
-        return 'В данный момент выбран '+ self.users_web_site().current_web_site
+        return 'В данный момент выбран '+ self.users_web_site(type_string=True)
 
 class Parse(object):
 
