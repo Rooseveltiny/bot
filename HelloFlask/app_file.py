@@ -43,7 +43,7 @@ def webhook_tests():
     try:
         text = perform_tests()
     except Exception as err:
-        text = err
+        text = str(err)
 
     return text, 200
 

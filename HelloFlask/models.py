@@ -17,16 +17,14 @@ class CurrentWebSite(db.Model):
 
         return 'user is {}, and the current web site is {}'.format(self.user, self.current_web_site)
 
-    def users_web_site(self, type_string=False):
+    def users_web_site(self):
 
-        if type_string:
-            return self.query.filter_by(user = self.user).first().current_web_site
         return self.query.filter_by(user = self.user)
 
     def save(self):
 
         current_web_site = self.users_web_site()
-        if current_web_site:
+        if current_web_site.first():
             current_web_site.update({'current_web_site': self.current_web_site})
             db.session.commit()
         else:

@@ -47,7 +47,7 @@ class ChooseWebSite(object):
         site_number = int(re.search(r'\d+', message.text).group(0))
 
         try:
-            self.web_site = LIST_OF_SITES[site_number + 1]
+            self.web_site = LIST_OF_SITES[site_number - 1]
         except:
             self.web_site = LIST_OF_SITES[len(LIST_OF_SITES) - 1]
         
@@ -70,7 +70,11 @@ class ShowCurrentWebSite(CurrentWebSite):
 
     def __str__(self):
 
-        return 'В данный момент выбран '+ self.users_web_site(type_string=True)
+        current_web_site = self.users_web_site().first()
+        if current_web_site:
+            return 'В данный момент выбран '+ current_web_site.current_web_site
+        else:
+            return 'В данный момент ничего не выбрано!'
 
 class Parse(object):
 
