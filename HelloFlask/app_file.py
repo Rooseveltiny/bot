@@ -21,7 +21,7 @@ def start(message):
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
 
-    # text = KeyWord(message)
+    text = KeyWord(message)
     bot.reply_to(message, text)
 
 @app.route("/{}".format(TOKEN), methods=['POST'])
