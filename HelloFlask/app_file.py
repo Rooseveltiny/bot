@@ -44,8 +44,19 @@ def webhook_tests():
         text = perform_tests()
     except Exception as err:
         text = str(err)
-
     return text, 200
+
+@app.route("/db_create")
+def db_create_all():
+
+    try:
+        db.create_all()
+    except Exception as err:
+        return str(err), 200
+    return 'success!', 200
+
+
+
 
 if __name__ == '__main__':
     app.run(use_debugger=False, use_reloader=False, passthrough_errors=True)
