@@ -1,10 +1,10 @@
 from key_word import KeyWord
 
 TEST = [
-    # 'Выбери сайт 1',
+    'Выбери сайт 1',
     'Текущий сайт?',
-    # 'Список сайтов',
-    # 'Сохрани 3 страницы из категории строительные технологии с сайта Фэйсбук',
+    'Список сайтов',
+    'Сохрани 3 страницы из категории строительные технологии с сайта Фэйсбук',
 ] 
 
 class Chat(object):
@@ -21,12 +21,13 @@ class MessageObject(object):
 
 def perform_tests():
 
+    tests_result = ''
     for message in TEST:    
         message = MessageObject(message)
         command = KeyWord(message)
-        return command.result
+        tests_result += command.result+'\n'
 
-    kek = 1
+    return tests_result
 
 if __name__ == "__main__":
 

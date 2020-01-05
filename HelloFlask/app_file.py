@@ -5,14 +5,14 @@ import os
 from models import db
 from tests import perform_tests
 
-
 dir_path = os.getcwd()
+# dir_path = os.path.dirname(os.path.abspath(__file__))
 
 TOKEN = '940320468:AAEmAv4SV7b-FdZpuP4NTUSw-AH8uf5eixo'
 bot = telebot.TeleBot(TOKEN)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////'+dir_path+'/bot.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////'+dir_path+'/bot_database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
@@ -54,8 +54,6 @@ def db_create_all():
     except Exception as err:
         return str(err), 200
     return 'success!', 200
-
-
 
 
 if __name__ == '__main__':
