@@ -5,7 +5,7 @@ this module is for describing possible commands of bot for controling web-sites!
 
 import re
 import request
-from app_file import CurrentWebSite
+from models import CurrentWebSite
 
 NUMS = {
     'одну': 1,
