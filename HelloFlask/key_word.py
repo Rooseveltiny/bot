@@ -1,10 +1,11 @@
 import re
-from commands import Parse, ListSites, ChooseWebSite
+from commands import Parse, ListSites, ChooseWebSite, ShowCurrentWebSite
 
 COMMANDS = {
     'сохрани': Parse,
     'список': ListSites,
     'выбери': ChooseWebSite,
+    'текущий': ShowCurrentWebSite
 }
 
 class KeyWord(object):

@@ -22,7 +22,7 @@ NUMS = {
 LIST_OF_SITES = [
     'xvideos.com',
     'pretty_cool.com',
-    'cool_pussy.com'
+    'cool_pussy.com',
     'homepornweb.com',
     ]
 
@@ -39,23 +39,38 @@ class ListSites(object):
             list_of_sites += str(index+1)+ ')  '+value+ '\n'
         return list_of_sites
 
-class ChooseWebSite(ListSites):
+class ChooseWebSite(object):
 
     def __init__(self, message):
 
         self.message = message
-        self.site_number = int(re.search(r'\d+', message.text).group(0))
+        site_number = int(re.search(r'\d+', message.text).group(0))
+
+        try:
+            self.web_site = LIST_OF_SITES[site_number + 1]
+        except:
+            self.web_site = LIST_OF_SITES[len(LIST_OF_SITES) - 1]
+        
         self._choose_web_site()
 
     def _choose_web_site(self):
 
-        current_web_site = CurrentWebSite(user = self.message.chat.id, current_web_site = LIST_OF_SITES[self.site_number + 1])
+        current_web_site = CurrentWebSite(user = self.message.chat.id, current_web_site = self.web_site)
         current_web_site.save()
 
     def __str__(self):
 
-        return 'Сайт выбран!'
+        return 'Выбран ' +self.web_site+'!'
 
+class ShowCurrentWebSite(CurrentWebSite):
+
+    def __init__(self, message):
+
+        self.user = message.chat.id
+
+    def __str__(self):
+
+        return 'В данный момент выбран '+ self.users_web_site().current_web_site
 
 class Parse(object):
 

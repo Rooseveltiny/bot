@@ -54,15 +54,21 @@ class CurrentWebSite(db.Model):
 
         return 'user is {}, and the current web site is {}'.format(self.user, self.current_web_site)
 
+    def users_web_site(self):
+
+        return db.session.query(CurrentWebSite).filter_by(user=self.user).first()
+
     def save(self):
 
-        current_web_site = db.session.query(CurrentWebSite).filter_by(user=self.user).first()
-        if current_web_site:
-            current_web_site.current_web_site = 'lolkek.com'
+        if self.users_web_site():
+            self.current_web_site = 'lolkek.com'
             db.session.commit()
         else:
             db.session.add(self)
             db.session.commit()
+
+
+
 
 if __name__ == "__main__":
     
