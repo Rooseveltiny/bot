@@ -1,1 +1,1 @@
-import app_file
+from app_file import app
