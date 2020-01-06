@@ -27,7 +27,7 @@ def echo_message(message):
 
     try:
         with app.app_context():
-            text = perform_tests_new(message)
+            text = KeyWord(message).result
     except UnknownCommand as err:
         text = err
     except Exception as err:

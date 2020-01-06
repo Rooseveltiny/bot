@@ -34,15 +34,21 @@ LIST_OF_SITES = [
 
 class ListSites(object):
 
-    def __init__(self, parameters):
+    def __init__(self, message):
 
+        self.message = message
         self.list_of_sites = LIST_OF_SITES
 
     def __str__(self):
 
+        current_web_site = CurrentWebSite(user=self.message.chat.id).users_web_site().first().current_web_site
         list_of_sites = ''
         for index, value in enumerate(self.list_of_sites):
-            list_of_sites += str(index+1) + ')  '+value + '\n'
+            row_with_site = str(index+1) + ')  '+value + '\n'
+            if current_web_site == value:
+                row_with_site = '**'+row_with_site+'**'
+            list_of_sites += row_with_site
+
         return list_of_sites
 
 
@@ -84,7 +90,6 @@ class ShowCurrentWebSite(CurrentWebSite):
             return 'В данный момент выбран ' + current_web_site.current_web_site
         else:
             return 'В данный момент ничего не выбрано!'
-
 
 class Parse(object):
 
