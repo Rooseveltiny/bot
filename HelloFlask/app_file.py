@@ -1,9 +1,11 @@
+from custom_exceptions import UnknownCommand
 from flask import Flask, request
+from tests import perform_tests
 from key_word import KeyWord
+from models import db
+import traceback
 import telebot
 import os
-from models import db
-from tests import perform_tests
 
 dir_path = os.getcwd()
 # dir_path = os.path.dirname(os.path.abspath(__file__))
@@ -23,7 +25,13 @@ def start(message):
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
 
-    text = KeyWord(message).result
+    try:
+        with app.app_context():
+            text = perform_tests_new(message)
+    except UnknownCommand as err:
+        text = err
+    except Exception as err:
+        text = err
     bot.reply_to(message, text)
 
 @app.route("/{}".format(TOKEN), methods=['POST'])

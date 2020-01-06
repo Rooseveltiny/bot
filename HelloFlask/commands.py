@@ -29,20 +29,22 @@ LIST_OF_SITES = [
     'keklol.kek',
     'maamacri.ru',
     'yoyoyoyoyo.net',
-    ]
+]
+
 
 class ListSites(object):
 
     def __init__(self, parameters):
 
-        self.list_of_sites = LIST_OF_SITES 
+        self.list_of_sites = LIST_OF_SITES
 
     def __str__(self):
 
         list_of_sites = ''
         for index, value in enumerate(self.list_of_sites):
-            list_of_sites += str(index+1)+ ')  '+value+ '\n'
+            list_of_sites += str(index+1) + ')  '+value + '\n'
         return list_of_sites
+
 
 class ChooseWebSite(object):
 
@@ -55,17 +57,19 @@ class ChooseWebSite(object):
             self.web_site = LIST_OF_SITES[site_number - 1]
         except:
             self.web_site = LIST_OF_SITES[len(LIST_OF_SITES) - 1]
-        
+
         self._choose_web_site()
 
     def _choose_web_site(self):
 
-        current_web_site = CurrentWebSite(user = self.message.chat.id, current_web_site = self.web_site)
+        current_web_site = CurrentWebSite(
+            user=self.message.chat.id, current_web_site=self.web_site)
         current_web_site.save()
 
     def __str__(self):
 
-        return 'Выбран ' +self.web_site+'!'
+        return 'Выбран ' + self.web_site+'!'
+
 
 class ShowCurrentWebSite(CurrentWebSite):
 
@@ -77,9 +81,10 @@ class ShowCurrentWebSite(CurrentWebSite):
 
         current_web_site = self.users_web_site().first()
         if current_web_site:
-            return 'В данный момент выбран '+ current_web_site.current_web_site
+            return 'В данный момент выбран ' + current_web_site.current_web_site
         else:
             return 'В данный момент ничего не выбрано!'
+
 
 class Parse(object):
 
@@ -100,11 +105,12 @@ class Parse(object):
 
     def _pick_up_information(self):
 
-        self.category = re.search(r'категории (.+) с сайта', self.message).group(1)
+        self.category = re.search(
+            r'категории (.+) с сайта', self.message).group(1)
         self.q_pages = self._get_q_pages()
         self.from_web_site = re.search(r'сайта (.+)', self.message).group(1)
-        print(self.category, self.q_pages, self.from_web_site)  
-        
+        print(self.category, self.q_pages, self.from_web_site)
+
     def go_api(self):
 
         pass
@@ -112,10 +118,10 @@ class Parse(object):
     def __str__(self):
 
         return "всё ок!"
-        
+
 
 if __name__ == "__main__":
-    
+
     list_of_sites = str(ListSites('some message!'))
     print(list_of_sites)
     finish = 1
