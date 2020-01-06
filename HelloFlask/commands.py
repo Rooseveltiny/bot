@@ -44,10 +44,10 @@ class ListSites(object):
         current_web_site = CurrentWebSite(user=self.message.chat.id).users_web_site().first().current_web_site
         list_of_sites = ''
         for index, value in enumerate(self.list_of_sites):
-            row_with_site = str(index+1) + ')  '+value + '\n'
+            row_with_site = str(index+1) + ') '+value
             if current_web_site == value:
                 row_with_site = '**'+row_with_site+'**'
-            list_of_sites += row_with_site
+            list_of_sites += row_with_site + '\n'
 
         return list_of_sites
 
